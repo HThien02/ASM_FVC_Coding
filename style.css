@@ -42,6 +42,16 @@ nav{
   border-radius: 5px;
   padding-bottom: 10px;
 }
+.pagination {
+  width: 100%;
+  text-align: center;
+}
+.pagination button {
+  text-align: center;
+  border: none;
+  margin: 0px 5px;
+  background: none;
+}
 /* For mobile phones: */
 body {
   background-color: black;

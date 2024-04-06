@@ -22,60 +22,141 @@ const carData = [
 {carName: "Vinfast Theon S", carPrice: 3000, carPicture: "https://shop.vinfastauto.com/on/demandware.static/-/Sites-app_vinfast_vn-Library/default/dw52c9a310/images/PDP-XMD/theons/image-color-sp.webp", carLink: "https://shop.vinfastauto.com/vn_vi/xe-may-dien-theon-s.html"},
 ];
 
-// Lặp qua mảng carData và tạo các card cho mỗi chiếc xe
-carData.forEach(car => {
-    // Tạo các phần tử HTML cho mỗi chiếc xe
-    const cardListItem = document.createElement('div');
-    cardListItem.classList.add('card-list', 'col-lg-3', 'col-md-4', 'col-12');
+// // Lặp qua mảng carData và tạo các card cho mỗi chiếc xe
+// carData.forEach(car => {
+//     // Tạo các phần tử HTML cho mỗi chiếc xe
+//     const cardListItem = document.createElement('div');
+//     cardListItem.classList.add('card-list', 'col-lg-3', 'col-md-4', 'col-12');
 
-    const card = document.createElement('div');
-    card.classList.add('card');
+//     const card = document.createElement('div');
+//     card.classList.add('card');
 
-    const image = document.createElement('img');
-    image.classList.add('mx-auto', 'img-thumbnail');
-    image.src = car.carPicture;
-    image.alt = car.carName;
+//     const image = document.createElement('img');
+//     image.classList.add('mx-auto', 'img-thumbnail');
+//     image.src = car.carPicture;
+//     image.alt = car.carName;
 
-    const cardBody = document.createElement('div');
-    cardBody.classList.add('card-body', 'text-center', 'mx-auto');
+//     const cardBody = document.createElement('div');
+//     cardBody.classList.add('card-body', 'text-center', 'mx-auto');
 
-    const cvp = document.createElement('div');
-    cvp.classList.add('cvp');
+//     const cvp = document.createElement('div');
+//     cvp.classList.add('cvp');
 
-    const title = document.createElement('h5');
-    title.classList.add('card-title', 'font-weight-bold');
-    title.textContent = car.carName;
+//     const title = document.createElement('h5');
+//     title.classList.add('card-title', 'font-weight-bold');
+//     title.textContent = car.carName;
 
-    const price = document.createElement('p');
-    price.classList.add('card-text');
-    price.textContent = `$${car.carPrice}`;
+//     const price = document.createElement('p');
+//     price.classList.add('card-text');
+//     price.textContent = `$${car.carPrice}`;
 
-    const detailsLink = document.createElement('a');
-    detailsLink.href = car.carLink;
-    detailsLink.target = '_blank';
-    detailsLink.classList.add('btn', 'details', 'px-auto');
-    detailsLink.textContent = 'View Details';
+//     const detailsLink = document.createElement('a');
+//     detailsLink.href = car.carLink;
+//     detailsLink.target = '_blank';
+//     detailsLink.classList.add('btn', 'details', 'px-auto');
+//     detailsLink.textContent = 'View Details';
 
-    const addToCartLink = document.createElement('a');
-    addToCartLink.href = '#';
-    addToCartLink.classList.add('btn', 'cart', 'px-auto');
-    addToCartLink.textContent = 'ADD TO CART';
+//     const addToCartLink = document.createElement('a');
+//     addToCartLink.href = '#';
+//     addToCartLink.classList.add('btn', 'cart', 'px-auto');
+//     addToCartLink.textContent = 'ADD TO CART';
 
-    // Gắn các phần tử vào các phần tử cha tương ứng
-    cvp.appendChild(title);
-    cvp.appendChild(price);
-    cvp.appendChild(detailsLink);
-    cvp.appendChild(document.createElement('br'));
-    cvp.appendChild(addToCartLink);
+//     // Gắn các phần tử vào các phần tử cha tương ứng
+//     cvp.appendChild(title);
+//     cvp.appendChild(price);
+//     cvp.appendChild(detailsLink);
+//     cvp.appendChild(document.createElement('br'));
+//     cvp.appendChild(addToCartLink);
 
-    cardBody.appendChild(cvp);
-    card.appendChild(image);
-    card.appendChild(cardBody);
-    cardListItem.appendChild(card);
+//     cardBody.appendChild(cvp);
+//     card.appendChild(image);
+//     card.appendChild(cardBody);
+//     cardListItem.appendChild(card);
 
-    // Gắn cardListItem vào phần tử chứa card-list
-    const cardListContainer = document.querySelector('.card-list-container');
-    cardListContainer.appendChild(cardListItem);
-    console.log(car[0])
-});
+//     // Gắn cardListItem vào phần tử chứa card-list
+//     const cardListContainer = document.querySelector('.card-list-container');
+//     cardListContainer.appendChild(cardListItem);
+//     console.log(car[0])
+// });
 
+const itemsPerPage = 8; // Số lượng mục trên mỗi trang
+const totalPages = Math.ceil(carData.length / itemsPerPage); // Tính tổng số trang
+
+function displayPage(page) {
+    const startIndex = (page - 1) * itemsPerPage; // Index bắt đầu của mục trên trang
+    const endIndex = startIndex + itemsPerPage; // Index kết thúc của mục trên trang
+    const slicedData = carData.slice(startIndex, endIndex); // Dữ liệu được cắt từ danh sách toàn bộ
+
+    // Hiển thị các card tương ứng với trang hiện tại
+    const cardListContainer = document.querySelector('.row');
+    cardListContainer.innerHTML = ''; // Xóa nội dung hiện tại
+
+    slicedData.forEach(car => {
+        // Tạo các phần tử HTML cho mỗi chiếc xe
+        const cardListItem = document.createElement('div');
+        cardListItem.classList.add('card-list', 'col-lg-3', 'col-md-4', 'col-12');
+
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        const image = document.createElement('img');
+        image.classList.add('mx-auto', 'img-thumbnail');
+        image.src = car.carPicture;
+        image.alt = car.carName;
+
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body', 'text-center', 'mx-auto');
+
+        const cvp = document.createElement('div');
+        cvp.classList.add('cvp');
+
+        const title = document.createElement('h5');
+        title.classList.add('card-title', 'font-weight-bold');
+        title.textContent = car.carName;
+
+        const price = document.createElement('p');
+        price.classList.add('card-text');
+        price.textContent = `$${car.carPrice}`;
+
+        const detailsLink = document.createElement('a');
+        detailsLink.href = car.carLink;
+        detailsLink.target = '_blank';
+        detailsLink.classList.add('btn', 'details', 'px-auto');
+        detailsLink.textContent = 'View Details';
+
+        const addToCartLink = document.createElement('a');
+        addToCartLink.href = '#';
+        addToCartLink.classList.add('btn', 'cart', 'px-auto');
+        addToCartLink.textContent = 'ADD TO CART';
+
+        // Gắn các phần tử vào các phần tử cha tương ứng
+        cvp.appendChild(title);
+        cvp.appendChild(price);
+        cvp.appendChild(detailsLink);
+        cvp.appendChild(document.createElement('br'));
+        cvp.appendChild(addToCartLink);
+
+        cardBody.appendChild(cvp);
+        card.appendChild(image);
+        card.appendChild(cardBody);
+        cardListItem.appendChild(card);
+
+        // Gắn cardListItem vào phần tử chứa card-list
+        cardListContainer.appendChild(cardListItem);
+    });
+}
+
+// Tạo các nút phân trang
+const paginationContainer = document.querySelector('.pagination');
+for (let i = 1; i <= totalPages; i++) {
+    const pageButton = document.createElement('button');
+    // pageButton.classList.add('col-lg-2 col-md-4 col-12');
+    pageButton.textContent = i;
+    pageButton.addEventListener('click', () => {
+        displayPage(i);
+    });
+    paginationContainer.appendChild(pageButton);
+}
+
+// Hiển thị trang đầu tiên khi tải trang
+displayPage(1);
