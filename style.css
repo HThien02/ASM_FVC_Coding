@@ -1,20 +1,70 @@
+nav{
+  background-color: #FFF6F6;
+}
+.details {
+  border: 1.5px solid #FACBEA;
+  color: #212121;
+  width: 100%;
+  height: auto;
+  box-shadow: 1px 1px 1px #FFC0D9;
+}
+
+.cart {
+  background-color: #FACBEA;
+  color: white;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 900;
+  width: 100%;
+  height: 39px;
+  padding-top: 9px;
+  box-shadow: 1px 1px 1px  #FFC0D9;
+}
+
+.card {
+  width: fit-content;
+}
+
+.card-body {
+  width: fit-content;
+}
+
+.btn {
+  border-radius: 5px;
+}
+
+.img-thumbnail {
+  border: none;
+}
+
+.card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+/* For mobile phones: */
 body {
-    background-color: #FFCAD4;
-    text-align: center;
-}
-.hello {
-    font-size: 5em !important;
-    font-weight: 500;
-}
-.name {
-    font-size: 2em;
-    font-weight: 500;
-    margin-top: -50px;
-}
-.tittle {
-    word-wrap: break-word;
-    width: 400px;
-    text-align: center;
-    margin-left: 40%;
-    font-size: 1.5em;
-}
+  background-color: black;
+  }
+  @media only screen and (min-width: 768px) {
+  /* For tablets: */
+  body {
+  background-color: green;
+  }
+  }
+  @media only screen and (min-width: 987px) {
+  /* For desktop: */
+  body {
+  background-color: pink;
+  }
+  .card img {
+    width: 300px;
+    height: 180px;
+  }
+  .card-list {
+    margin: 10px 0px;
+  }
+  nav .logo {
+    height: 50px;
+  }
+  }
