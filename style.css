@@ -35,9 +35,13 @@ nav{
 
 .img-thumbnail {
   border: none;
+  width: 100%;
 }
-
+.logo {
+width: 60px;
+}
 .card {
+  width: 100%;
   box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
   border-radius: 5px;
   padding-bottom: 10px;
@@ -52,14 +56,19 @@ nav{
   margin: 0px 5px;
   background: none;
 }
+.title {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
 /* For mobile phones: */
 body {
-  background-color: black;
+  background-color: pink;
   }
   @media only screen and (min-width: 768px) {
   /* For tablets: */
   body {
-  background-color: green;
+  background-color: pink;
   }
   }
   @media only screen and (min-width: 987px) {
